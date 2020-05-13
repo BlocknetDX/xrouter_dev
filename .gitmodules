@@ -1,0 +1,3 @@
+[submodule "bitcoin-spv"]
+	path = bitcoin-spv
+	url = https://github.com/summa-tx/bitcoin-spv
