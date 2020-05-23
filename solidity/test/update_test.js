@@ -1,42 +1,25 @@
-var KeyStorageContract = artifacts.require("./KeyStorage.sol");
-var DelegateV1Contract = artifacts.require("./DelegateV1.sol");
-var DelegateV2Contract = artifacts.require("./DelegateV2.sol");
-var ProxyContract = artifacts.require("./ProxyContract.sol");
+var solrouter = artifacts.require("./solrouter.sol");
+var solrouterUser = artifacts.require("./solrouterUserEx.sol");
 
-contract("Updatable-solidity", async function(accounts) {
+contract("solrouter test", async function(accounts) {
+    it("testing ethbtc price update in solrouterUser contract", async function() {
+        let sr = await solrouter.deployed();
+        let sru = await solrouterUser.deployed();
 
-  it("should create and upgrade the delegate contract", async function() {
-    var initialNumber = 10;
-    var updatedNumber = 20;
+        await sru.setSRA(sr.address);
+        console.log(sr.address);
 
-    let keyStorage = await KeyStorageContract.deployed();
-    let delegateV1 = await DelegateV1Contract.deployed();
-    let delegateV2 = await DelegateV2Contract.deployed();
-    let proxyContract = await ProxyContract.deployed();
+        let price = await sr.requestPrice({ from: accounts[0] });
+        console.log("price", price);
 
-    // Change _implementation to delegateV1 address
-    await proxyContract.upgradeTo(delegateV1.address);
-    proxyContract = _.extend(proxyContract, DelegateV1Contract.at(proxyContract.address));
+        await sru.updateEthbtc({ from: accounts[0], value: price });
+        console.log("requested");
 
-    // Call setNumberOfOwners function and set a number
-    await proxyContract.setNumberOfOwners(initialNumber);
-    let numOwnerV1 = await proxyContract.getNumberOfOwners();
+        await sr.callback(0, 1, "100", { from: accounts[0] });
+        console.log("data sent");
 
-    // Change _implementation to delegateV2 address
-    await proxyContract.upgradeTo(delegateV2.address);
-    proxyContract = DelegateV2Contract.at(proxyContract.address);
-    // Call getNumberOfOwners function and get the number that was modified by DelegateV1
-    let previousOwnerState = await proxyContract.getNumberOfOwners();
-
-    // Call setNumberOfOwners function and set a number
-    await proxyContract.setNumberOfOwners(20, {from:accounts[0]});
-    let numOwnerV2 = await proxyContract.getNumberOfOwners();
-
-    // console.log(numOwnerV1.toNumber());
-    // console.log(previousOwnerState.toNumber());
-    // console.log(numOwnerV2.toNumber());
-    assert.equal(previousOwnerState.toNumber(), numOwnerV1.toNumber(), "Initial number changed after the contract upgraded");
-    assert.equal(numOwnerV2.toNumber(), updatedNumber, "Updated number was wrong after the contract upgraded");
-  });
+        console.log(await sru.ethbtc({ from: accounts[0] }));
+        assert.equal(await sru.ethbtc({ from: accounts[0] }), "100");
+    });
 });
 
