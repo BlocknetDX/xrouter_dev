@@ -16,31 +16,25 @@ A proof system requires case-by-case implementation of proof standards integrate
 ## solrouter methods:  
 
 nominateSnode(address newSnode, uint32 myID)
-
 A currently registered snode sends a new address to nominate and the snode's own ID (snodes must keep track of their own ID)
 
 registerSnode()
-
 A nominated snode accepts registration by running this function from the nominated address
 
 query(string memory request) 
-
 A user contract calls this function to make an arbitrary request, and must pay the requestPrice to the solrouter contract at this time (tracked by  mapping(address => uint256) payments;)
 This is a general request, other kinds of requests may be implemented by creating other query(newType) functions
 
 callback(uint32 snodeID, uint64 requestID, string memory requestReturn)
-
 An snode runs this function to send data back to the user contract and collect payment
 
 withdraw()
 An snode takes their accumulated payments out of the contract into their address
 
-##solrouter user methods:
-
+## solrouter user methods:
 A user contract must implement these methods in order to receive data from solrouter
 
 address payable public solrouterAddress;
-
 A user tracks the official solrouterAddress
 
 function () {
