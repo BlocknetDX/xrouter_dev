@@ -35,13 +35,9 @@ contract solrouter
     }
     
     //User query
-    receive() external payable {
-        payments[msg.sender] = msg.value;
-    }
-    
-    function query(string memory request) public {
+    function query(string memory request) public payable {
         lastRequestID++;
-        require(payments[msg.sender] >= requestPrice, "Insufficient payment for request");
+        //require(payments[msg.sender] >= requestPrice, "Insufficient payment for request");
         
         requests[lastRequestID] = msg.sender;
         

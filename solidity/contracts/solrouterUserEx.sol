@@ -6,7 +6,8 @@ contract solrouterUserEx{
     
     address owner;
     address payable public solrouterAddress;
-    
+    //solrouterAbstract public sra;
+
     constructor () public {
         owner = msg.sender;
     }
@@ -14,11 +15,13 @@ contract solrouterUserEx{
     function setSRA(address payable newSRA) public {
         require(msg.sender == owner);
         solrouterAddress = newSRA;
+		//sra = solrouterAbstract(newSRA);
     }
     
     function updateEthbtc() public payable{
-        solrouterAddress.transfer(msg.value);
-        solrouterAddress.call(abi.encodeWithSignature("query(string)", "https://getEthbtcFrom.snode"));
+        //solrouterAddress.transfer(msg.value);
+		//solrouterAbstract sra =  
+        solrouterAddress.call.value(msg.value)(abi.encodeWithSignature("query(string)", "requestString"));
     }
     
     function snode_callback(string memory data) public {

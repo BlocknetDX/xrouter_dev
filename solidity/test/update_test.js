@@ -8,11 +8,12 @@ contract("solrouter test", async function(accounts) {
 
         await sru.setSRA(sr.address);
         console.log(sr.address);
+        console.log(await sru.solrouterAddress());
 
         let price = await sr.requestPrice({ from: accounts[0] });
         console.log("price", price);
 
-        await sru.updateEthbtc({ from: accounts[0], value: price });
+        await sru.updateEthbtc({ from: accounts[0] });
         console.log("requested");
 
         await sr.callback(0, 1, "100", { from: accounts[0] });
