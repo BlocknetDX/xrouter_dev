@@ -4,6 +4,8 @@ snode operated oracle
 
 This system trusts snodes to return api data, and allows users to pay snodes for the service.
 
+![system diagram](solrouter.png)
+
 A user contract that wants to query snodes for api data implements the necessary functions - solrouter.call() with the correctly formatted query which is sent to solrouter, and snode_callback() which allows the snodes to send data back into the user contract.
 
 Solrouter emits an event when a query is made, which the snodes can look for in each new block confirmed on the chain. After a sufficient amount of confirmations on that block, an snode will callback the user contract with the requested data.
