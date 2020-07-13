@@ -1,0 +1,33 @@
+{
+  "name": "ethereum-event-listener",
+  "version": "0.0.2",
+  "description": "Ethereum event listen from geth.",
+  "main": "geth.js",
+  "scripts": {
+    "test": "test"
+  },
+  "bin": {
+    "ethereum-listener": "./igeth.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ilioscio/geth-listener.git"
+  },
+  "keywords": [
+    "ethereum",
+    "event",
+    "subscription",
+    "monitoring",
+    "geth",
+    "event"
+  ],
+  "author": "ilioscio",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ilioscio/geth-listener.git"
+  },
+  "homepage": "https://github.com/ilioscio/geth-listener.git",
+  "dependencies": {
+    "web3": "^1.0.0-beta.30"
+  }
+}

@@ -1,0 +1,135 @@
+[
+{
+"inputs": [
+{
+"internalType": "uint32",
+"name": "snodeID",
+"type": "uint32"
+},
+{
+"internalType": "uint64",
+"name": "requestID",
+"type": "uint64"
+},
+{
+"internalType": "string",
+"name": "requestReturn",
+"type": "string"
+}
+],
+"name": "callback",
+"outputs": [
+{
+"internalType": "string",
+"name": "",
+"type": "string"
+}
+],
+"stateMutability": "nonpayable",
+"type": "function"
+},
+{
+"inputs": [
+{
+"internalType": "address",
+"name": "newSnode",
+"type": "address"
+},
+{
+"internalType": "uint32",
+"name": "myID",
+"type": "uint32"
+}
+],
+"name": "nominateSnode",
+"outputs": [],
+"stateMutability": "nonpayable",
+"type": "function"
+},
+{
+"inputs": [
+{
+"internalType": "string",
+"name": "request",
+"type": "string"
+}
+],
+"name": "query",
+"outputs": [],
+"stateMutability": "nonpayable",
+"type": "function"
+},
+{
+"inputs": [],
+"name": "registerSnode",
+"outputs": [],
+"stateMutability": "nonpayable",
+"type": "function"
+},
+{
+"inputs": [],
+"stateMutability": "nonpayable",
+"type": "constructor"
+},
+{
+"anonymous": false,
+"inputs": [
+{
+"indexed": true,
+"internalType": "address",
+"name": "sender",
+"type": "address"
+},
+{
+"indexed": true,
+"internalType": "string",
+"name": "request",
+"type": "string"
+},
+{
+"indexed": false,
+"internalType": "uint256",
+"name": "timestamp",
+"type": "uint256"
+}
+],
+"name": "queried",
+"type": "event"
+},
+{
+"anonymous": false,
+"inputs": [
+{
+"indexed": true,
+"internalType": "uint32",
+"name": "snodeID",
+"type": "uint32"
+},
+{
+"indexed": true,
+"internalType": "uint64",
+"name": "requestID",
+"type": "uint64"
+},
+{
+"indexed": false,
+"internalType": "string",
+"name": "requestReturn",
+"type": "string"
+}
+],
+"name": "successfulCallback",
+"type": "event"
+},
+{
+"inputs": [],
+"name": "withdraw",
+"outputs": [],
+"stateMutability": "payable",
+"type": "function"
+},
+{
+"stateMutability": "payable",
+"type": "receive"
+}
+]

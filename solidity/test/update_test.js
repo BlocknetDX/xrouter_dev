@@ -13,8 +13,8 @@ contract("solrouter test", async function(accounts) {
         let price = await sr.requestPrice({ from: accounts[0] });
         console.log("price", price);
 
-        await sru.updateEthbtc({ from: accounts[0] });
-        console.log("requested");
+        let blockreq = await sru.updateEthbtc({ from: accounts[0] });
+        console.log("query blocknet gas used", blockreq.receipt.gasUsed);
 
         await sr.callback(0, 1, "100", { from: accounts[0] });
         console.log("data sent");
