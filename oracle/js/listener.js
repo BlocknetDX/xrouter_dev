@@ -1,7 +1,8 @@
 let lastBlock = 0
 let newQueries = []
-setInterval(function() {
-  contract.getPastEvents('allEvents', {fromBlock: lastBlock, toBlock: 'latest'},
+setInterval(async function() {
+    newQueries = []
+  await contract.getPastEvents('allEvents', {fromBlock: lastBlock, toBlock: 'latest'},
     function(error, events){
       if(error){
         console.log(error)
@@ -16,8 +17,7 @@ setInterval(function() {
                 }
             }
         }
-        //@TODO send gets newQueries
-        newQueries = [];
+        return newQueries
       }
     }
   )
