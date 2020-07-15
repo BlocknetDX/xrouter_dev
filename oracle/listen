@@ -1,2 +1,2 @@
 #!/bin/sh
-node /usr/local/listener/listener.js
+node /usr/local/js/listener.js

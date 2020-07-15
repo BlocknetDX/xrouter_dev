@@ -1,2 +1,2 @@
 #!/bin/sh
-node /usr/local/oracle/respond.js
+node /usr/local/js/respond.js
