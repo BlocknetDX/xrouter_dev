@@ -32,7 +32,7 @@ setInterval(async function() {
         return newQueries
       }
     }
-  )
+  ).catch((err) => {console.error(err);})
 },10000)
 
 

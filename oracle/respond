@@ -1,2 +1,2 @@
 #!/bin/sh
-node /usr/local/js/respond.js
+eval node /usr/local/js/responder.js $1
